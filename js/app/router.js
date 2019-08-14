@@ -7,9 +7,9 @@ define(function() {
 
     internals.routes = {
         // ChangeMe route
-        changeMe: {
-            hash: '#change-me', // hash
-            controller: 'change-me-controller' // controller
+        home: {
+            hash: '#home', // hash
+            controller: 'home-controller' // controller
         },
         route2: {
             hash: '#route2',
@@ -17,7 +17,7 @@ define(function() {
         }
     };
 
-    internals.defaultRoute = 'changeMe';
+    internals.defaultRoute = 'home';
     internals.currentHash = ''; // required to track hash changes
 
     internals.hashCheck = function() {
@@ -50,9 +50,10 @@ define(function() {
     };
 
     externals.start = function() {
-        window.location.hash = window.location.hash || internals.routes[internals.defaultRoute].hash;
+        window.location.hash =
+            window.location.hash || internals.routes[internals.defaultRoute].hash;
 
-        setInterval(internals.hashCheck, 150); // TODO REDO THIS WITH EVENTS?
+        setInterval(internals.hashCheck, 150);
     };
 
     return externals;

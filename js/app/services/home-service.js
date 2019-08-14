@@ -1,4 +1,5 @@
-define(function() {
+define(function () {
+    var API_URL = 'https://sv443.net/jokeapi/category/Any?blacklistFlags=nsfw';
     var internals = {}; // internal state
     var externals = {}; // external api
 
@@ -16,7 +17,22 @@ define(function() {
         }
     ];
 
-    externals.getFilm = function(index) {
+    externals.getQuotes = function () {
+        return fetch(API_URL)
+        .then(function (response) {
+            return response.json();
+        })
+        .then(function (myJson) {
+            console.log("getQuotes_return");
+            return myJson;
+
+        }).catch(function (error) {
+            console.log(error);
+        });
+        
+    }
+    
+    externals.getFilm = function (index) {
         return Promise.resolve(internals.films[index]);
     };
 
